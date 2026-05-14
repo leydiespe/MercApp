@@ -1,0 +1,112 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Tecnologia"
+    },
+    {
+      "id": 2,
+      "name": "Hogar"
+    },
+    {
+      "id": 3,
+      "name": "Oficina"
+    },
+    {
+      "id": 4,
+      "name": "Accesorios"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Laptop Nova 14",
+      "description": "Portatil ligera con pantalla Full HD y SSD rapido.",
+      "price": 799.99,
+      "imageUrl": "https://picsum.photos/seed/laptop-nova/800/600",
+      "categoryId": 1,
+      "stock": 12
+    },
+    {
+      "id": 2,
+      "name": "Audifonos Pulse",
+      "description": "Audifonos inalambricos con cancelacion pasiva de ruido.",
+      "price": 59.5,
+      "imageUrl": "https://picsum.photos/seed/audifonos-pulse/800/600",
+      "categoryId": 4,
+      "stock": 25
+    },
+    {
+      "id": 3,
+      "name": "Mouse Ergo Pro",
+      "description": "Mouse ergonomico para jornadas largas de trabajo.",
+      "price": 24.99,
+      "imageUrl": "https://picsum.photos/seed/mouse-ergo/800/600",
+      "categoryId": 3,
+      "stock": 40
+    },
+    {
+      "id": 4,
+      "name": "Teclado Mecánico Atlas",
+      "description": "Teclado mecanico con retroiluminacion ajustable.",
+      "price": 89.9,
+      "imageUrl": "https://picsum.photos/seed/teclado-atlas/800/600",
+      "categoryId": 3,
+      "stock": 18
+    },
+    {
+      "id": 5,
+      "name": "Lampara LED Nova",
+      "description": "Lampara de escritorio con brillo regulable y brazo flexible.",
+      "price": 34.25,
+      "imageUrl": "https://picsum.photos/seed/lampara-led/800/600",
+      "categoryId": 2,
+      "stock": 30
+    },
+    {
+      "id": 6,
+      "name": "Silla Office Comfort",
+      "description": "Silla de oficina con soporte lumbar y altura ajustable.",
+      "price": 149,
+      "imageUrl": "https://picsum.photos/seed/silla-office/800/600",
+      "categoryId": 2,
+      "stock": 9
+    },
+    {
+      "id": 7,
+      "name": "Smartwatch Active",
+      "description": "Reloj inteligente con seguimiento de actividad y notificaciones.",
+      "price": 119.99,
+      "imageUrl": "https://picsum.photos/seed/smartwatch-active/800/600",
+      "categoryId": 1,
+      "stock": 16
+    },
+    {
+      "id": 8,
+      "name": "Organizador Desk Flow",
+      "description": "Organizador para escritorio con compartimentos modulares.",
+      "price": 17.75,
+      "imageUrl": "https://picsum.photos/seed/desk-flow/800/600",
+      "categoryId": 3,
+      "stock": 50
+    },
+    {
+      "id": 9,
+      "name": "Cargador Turbo 65W",
+      "description": "Cargador de alta potencia compatible con multiples dispositivos.",
+      "price": 39,
+      "imageUrl": "https://picsum.photos/seed/cargador-turbo/800/600",
+      "categoryId": 4,
+      "stock": 22
+    },
+    {
+      "id": 10,
+      "name": "Parlante Studio Mini",
+      "description": "Parlante compacto con sonido claro para espacios reducidos.",
+      "price": 45.8,
+      "imageUrl": "https://picsum.photos/seed/parlante-mini/800/600",
+      "categoryId": 1,
+      "stock": 14
+    }
+  ]
+}
