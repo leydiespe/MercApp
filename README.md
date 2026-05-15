@@ -4,7 +4,7 @@ Aplicación web tipo SPA para catálogo de productos, desarrollada con Vue 3 y u
 
 ## Datos del estudiante
 
-- Nombre: Leydi Espe
+- Nombre: Leydi Oña
 - Proyecto: MercApp
 - Repositorio: https://github.com/leydiespe/MercApp.git
 
