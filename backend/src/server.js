@@ -254,6 +254,21 @@ app.use((error, _req, res, _next) => {
   res.status(500).json({ message: 'Error interno del servidor.' });
 });
 
-app.listen(port, () => {
-  console.log(`MercApp API escuchando en http://localhost:${port}`);
-});
+async function startServer() {
+  try {
+    await readDb();
+
+    app.listen(port, () => {
+      const baseUrl = `http://localhost:${port}`;
+      console.log(`Servidor corriendo en ${baseUrl}`);
+      console.log(`API REST disponible en ${baseUrl}/api`);
+      console.log('Persistencia local conectada correctamente');
+    });
+  } catch (error) {
+    console.error('No fue posible iniciar la persistencia local');
+    console.error(error);
+    process.exit(1);
+  }
+}
+
+startServer();

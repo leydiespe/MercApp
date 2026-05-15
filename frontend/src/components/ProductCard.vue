@@ -1,5 +1,5 @@
 <template>
-  <div class="product-card" @click="$emit('click')">
+  <article class="product-card" @click="$emit('click')">
     <div class="card-image">
       <img :src="product.imageUrl" :alt="product.name" />
     </div>
@@ -14,8 +14,22 @@
           {{ product.stock > 0 ? 'Disponible' : 'Sin stock' }}
         </span>
       </div>
+
+      <div class="card-actions">
+        <button type="button" class="detail-button" @click.stop="$emit('click')">
+          Ver detalle
+        </button>
+        <button
+          type="button"
+          class="cart-button"
+          :disabled="product.stock <= 0"
+          @click.stop="$emit('added-to-cart', product)"
+        >
+          Añadir
+        </button>
+      </div>
     </div>
-  </div>
+  </article>
 </template>
 
 <script setup>
@@ -37,23 +51,26 @@ const truncateText = (text, length) => {
 .product-card {
   background: white;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 18px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 100%;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
+  border-color: rgba(66, 185, 131, 0.45);
 }
 
 .card-image {
   width: 100%;
-  height: 200px;
+  aspect-ratio: 4 / 3;
+  height: auto;
   overflow: hidden;
   background: #f0f0f0;
 }
@@ -70,7 +87,7 @@ const truncateText = (text, length) => {
 }
 
 .card-body {
-  padding: 1rem;
+  padding: 1rem 1rem 1.1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -97,6 +114,54 @@ h3 {
   align-items: center;
   padding-top: 1rem;
   border-top: 1px solid #e0e0e0;
+}
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.detail-button,
+.cart-button {
+  border: none;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  transition: transform 0.2s, background 0.2s, opacity 0.2s;
+}
+
+.detail-button {
+  background: #eaf2ff;
+  color: #1f4aa8;
+}
+
+.cart-button {
+  background: #42b983;
+  color: white;
+}
+
+.detail-button:hover,
+.cart-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.cart-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+@media (max-width: 520px) {
+  .card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .card-footer {
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+  }
 }
 
 .price {

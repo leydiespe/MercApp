@@ -25,16 +25,22 @@
           </span>
         </div>
 
-        <button
-          v-if="product.stock > 0"
-          @click="addToCart"
-          class="btn-add-cart"
-        >
-          Añadir al carrito
-        </button>
-        <button v-else disabled class="btn-add-cart disabled">
-          Sin stock
-        </button>
+        <div class="actions">
+          <button
+            v-if="product.stock > 0"
+            @click="addToCart"
+            class="btn-add-cart"
+          >
+            Añadir al carrito
+          </button>
+          <button v-else disabled class="btn-add-cart disabled">
+            Sin stock
+          </button>
+
+          <router-link :to="`/product/${product.id}/edit`" class="btn-edit">
+            Editar producto
+          </router-link>
+        </div>
       </div>
     </div>
     <div v-else class="not-found">Producto no encontrado.</div>
@@ -45,18 +51,19 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { useProducts } from '../composables/useProducts'
+import { useCart } from '../composables/useCart'
 
 const route = useRoute()
 const product = ref(null)
 const loading = ref(false)
 const error = ref(null)
-const { categories } = useProducts()
+const { categories, loadCategories, getProductById } = useProducts()
+const { addItem } = useCart()
 
 const loadProduct = async () => {
   loading.value = true
   error.value = null
   try {
-    const { getProductById } = useProducts()
     const id = Number(route.params.id)
     product.value = await getProductById(id)
   } catch (err) {
@@ -67,18 +74,17 @@ const loadProduct = async () => {
 }
 
 const getCategoryName = (categoryId) => {
-  if (!categories.value) return ''
+  if (!categories.value) return 'Cargando categoría...'
   const cat = categories.value.find(c => c.id === categoryId)
   return cat ? cat.name : 'Categoría desconocida'
 }
 
 const addToCart = () => {
-  // Evento personalizado
-  console.log('Producto añadido al carrito:', product.value)
-  alert(`${product.value.name} añadido al carrito (función en fase 3)`)
+  addItem(product.value)
 }
 
 onMounted(async () => {
+  await loadCategories()
   await loadProduct()
 })
 </script>
@@ -86,6 +92,12 @@ onMounted(async () => {
 <style scoped>
 .product-detail {
   width: 100%;
+}
+
+.product-detail,
+.not-found {
+  max-width: 1200px;
+  margin-inline: auto;
 }
 
 .back-link {
@@ -124,6 +136,11 @@ onMounted(async () => {
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(210, 219, 231, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
 }
 
 .detail-image {
@@ -133,7 +150,7 @@ onMounted(async () => {
 .detail-image img {
   width: 100%;
   height: auto;
-  border-radius: 8px;
+  border-radius: 18px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -162,6 +179,16 @@ onMounted(async () => {
   gap: 2rem;
   margin: 2rem 0;
   font-size: 1.2rem;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.actions > * {
+  flex: 1 1 220px;
 }
 
 .price {
@@ -201,10 +228,45 @@ onMounted(async () => {
   cursor: not-allowed;
 }
 
+.btn-edit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 999px;
+  background: #eaf2ff;
+  color: #1f4aa8;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .detail-container {
     grid-template-columns: 1fr;
     gap: 2rem;
+    padding: 1rem;
+    border-radius: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .price {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .pricing {
+    flex-direction: column;
+    align-items: start;
+    gap: 0.8rem;
+  }
+
+  .btn-add-cart,
+  .btn-edit {
+    width: 100%;
   }
 }
 </style>

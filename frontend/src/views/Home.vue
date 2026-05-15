@@ -1,6 +1,14 @@
 <template>
   <div class="home">
-    <h1>Catálogo de Productos</h1>
+    <div class="hero">
+      <div>
+        <p class="eyebrow">MercApp SPA</p>
+        <h1>Catálogo de Productos</h1>
+        <p class="subtitle">Busca, filtra y añade productos al carrito mientras navegas por la API.</p>
+      </div>
+
+      <router-link to="/product/new" class="new-product-link">Nuevo producto</router-link>
+    </div>
 
     <div v-if="loading" class="loading">Cargando productos...</div>
     <div v-else-if="error" class="error">Error: {{ error }}</div>
@@ -31,6 +39,7 @@
         :key="product.id"
         :product="product"
         @click="goToProduct(product.id)"
+        @added-to-cart="addToCart(product)"
       />
     </div>
   </div>
@@ -41,9 +50,11 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ProductCard from '../components/ProductCard.vue'
 import { useProducts } from '../composables/useProducts'
+import { useCart } from '../composables/useCart'
 
 const router = useRouter()
 const { products, categories, loading, error, init } = useProducts()
+const { addItem } = useCart()
 
 const searchQuery = ref('')
 const selectedCategory = ref('')
@@ -67,6 +78,10 @@ const goToProduct = (id) => {
   router.push(`/product/${id}`)
 }
 
+const addToCart = (product) => {
+  addItem(product)
+}
+
 onMounted(async () => {
   await init()
 })
@@ -77,9 +92,52 @@ onMounted(async () => {
   width: 100%;
 }
 
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  padding: 1.25rem 1.25rem 1rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.72));
+  border: 1px solid rgba(210, 219, 231, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: #42b983;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
 h1 {
   color: #2c3e50;
-  margin-bottom: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  color: #5d6d7e;
+  max-width: 60ch;
+  line-height: 1.6;
+}
+
+.new-product-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: #2c3e50;
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 10px 24px rgba(44, 62, 80, 0.2);
 }
 
 .loading,
@@ -134,8 +192,16 @@ h1 {
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 860px) {
+  .hero {
+    align-items: start;
+    flex-direction: column;
+    padding: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -149,14 +215,18 @@ h1 {
   }
 
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .products-grid {
-    grid-template-columns: 1fr;
+  .hero {
+    border-radius: 18px;
+  }
+
+  .new-product-link {
+    width: 100%;
   }
 }
 </style>

@@ -6,7 +6,7 @@ export function useApi(url) {
   const loading = ref(false)
   const error = ref(null)
 
-  const fetch = async () => {
+  const fetchData = async () => {
     loading.value = true
     error.value = null
     try {
@@ -29,13 +29,13 @@ export function useApi(url) {
     data,
     loading,
     error,
-    fetch
+    fetchData
   }
 }
 
 export function useProducts() {
-  const { data: products, loading, error, fetch } = useApi('/api/products')
-  const { data: categories, fetch: fetchCategories } = useApi('/api/categories')
+  const productsApi = useApi('/api/products')
+  const categoriesApi = useApi('/api/categories')
 
   const getProductById = async (id) => {
     try {
@@ -47,15 +47,19 @@ export function useProducts() {
   }
 
   const init = async () => {
-    await fetch()
-    await fetchCategories()
+    await Promise.all([productsApi.fetchData(), categoriesApi.fetchData()])
   }
 
+  const loading = computed(() => productsApi.loading.value || categoriesApi.loading.value)
+  const error = computed(() => productsApi.error.value || categoriesApi.error.value)
+
   return {
-    products,
-    categories,
+    products: productsApi.data,
+    categories: categoriesApi.data,
     loading,
     error,
+    loadProducts: productsApi.fetchData,
+    loadCategories: categoriesApi.fetchData,
     getProductById,
     init
   }
