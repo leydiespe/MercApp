@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { readDb, writeDb } from './storage.js';
+import { initializeDb, readDb, writeDb } from './storage.js';
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
@@ -256,13 +256,13 @@ app.use((error, _req, res, _next) => {
 
 async function startServer() {
   try {
-    await readDb();
+    await initializeDb();
 
     app.listen(port, () => {
       const baseUrl = `http://localhost:${port}`;
       console.log(`Servidor corriendo en ${baseUrl}`);
       console.log(`API REST disponible en ${baseUrl}/api`);
-      console.log('Persistencia local conectada correctamente');
+      console.log(process.env.MONGODB_URI ? 'Persistencia MongoDB conectada correctamente' : 'Persistencia local conectada correctamente');
     });
   } catch (error) {
     console.error('No fue posible iniciar la persistencia local');

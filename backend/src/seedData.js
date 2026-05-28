@@ -1,17 +1,11 @@
-import { writeDb } from './storage.js';
-import { defaultState } from './seedData.js';
-
-await writeDb(defaultState);
-console.log('Seed completado: categorias y productos cargados.');import { writeDb } from './storage.js';
-
-const categories = [
+export const categories = [
   { id: 1, name: 'Tecnologia' },
   { id: 2, name: 'Hogar' },
   { id: 3, name: 'Oficina' },
   { id: 4, name: 'Accesorios' }
 ];
 
-const products = [
+export const products = [
   {
     id: 1,
     name: 'Laptop Nova 14',
@@ -104,5 +98,4 @@ const products = [
   }
 ];
 
-await writeDb({ categories, products });
-console.log('Seed completado: categorias y productos cargados.');
+export const defaultState = { categories, products };

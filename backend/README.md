@@ -5,6 +5,7 @@ API REST para el catalogo de productos de MercApp.
 ## Requisitos
 
 - Node.js 18 o superior
+- Una base de datos MongoDB Atlas y la variable `MONGODB_URI`
 
 ## Instalacion
 
@@ -13,6 +14,12 @@ npm install
 npm run seed
 npm start
 ```
+
+## Variables de entorno
+
+- `PORT`: puerto de escucha del backend, opcional en Railway
+- `MONGODB_URI`: cadena `mongodb+srv://...` de Atlas
+- `MONGODB_DB`: nombre de la base de datos, por defecto `mercapp`
 
 ## Endpoints
 
