@@ -23,7 +23,7 @@
       "name": "Laptop Nova 14",
       "description": "Portatil ligera con pantalla Full HD y SSD rapido.",
       "price": 799.99,
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTplmDBz8Q1pjh-8QJThwJjSWtZX32b-ZEjtQ&s",
+      "imageUrl": "https://picsum.photos/seed/laptop-nova/800/600",
       "categoryId": 1,
       "stock": 12
     },
@@ -32,7 +32,7 @@
       "name": "Audifonos Pulse",
       "description": "Audifonos inalambricos con cancelacion pasiva de ruido.",
       "price": 59.5,
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYupyj_CJlPW7ZxAjGhpbcl-6eUWtsymO9pg&s",
+      "imageUrl": "https://picsum.photos/seed/audifonos-pulse/800/600",
       "categoryId": 4,
       "stock": 25
     },
@@ -41,7 +41,7 @@
       "name": "Mouse Ergo Pro",
       "description": "Mouse ergonomico para jornadas largas de trabajo.",
       "price": 24.99,
-      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_913585-MEC109626725129_032026-O.webp",
+      "imageUrl": "https://picsum.photos/seed/mouse-ergo/800/600",
       "categoryId": 3,
       "stock": 40
     },
@@ -50,7 +50,7 @@
       "name": "Teclado Mecánico Atlas",
       "description": "Teclado mecanico con retroiluminacion ajustable.",
       "price": 89.9,
-      "imageUrl": "https://images.kabum.com.br/produtos/fotos/670589/teclado-mecanico-gamer-force-one-atlas-pro-rgb-switchs-huano-vermelho-hotswap-cabo-removivel-branco-fr-tc-ap-01_1732920570_gg.jpg",
+      "imageUrl": "https://picsum.photos/seed/teclado-atlas/800/600",
       "categoryId": 3,
       "stock": 18
     },
@@ -59,7 +59,7 @@
       "name": "Lampara LED Nova",
       "description": "Lampara de escritorio con brillo regulable y brazo flexible.",
       "price": 34.25,
-      "imageUrl": "https://http2.mlstatic.com/D_NQ_NP_686086-MLA110176532243_042026-O.webp",
+      "imageUrl": "https://picsum.photos/seed/lampara-led/800/600",
       "categoryId": 2,
       "stock": 30
     },
@@ -68,7 +68,7 @@
       "name": "Silla Office Comfort",
       "description": "Silla de oficina con soporte lumbar y altura ajustable.",
       "price": 149,
-      "imageUrl": "https://moblihouse.com/wp-content/uploads/2026/03/Promo-comfort_002.jpg",
+      "imageUrl": "https://picsum.photos/seed/silla-office/800/600",
       "categoryId": 2,
       "stock": 9
     },
@@ -77,7 +77,7 @@
       "name": "Smartwatch Active",
       "description": "Reloj inteligente con seguimiento de actividad y notificaciones.",
       "price": 119.99,
-      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt5Ff6bKEDbRNLOSFBn09WAI1Lggug3DTPfg&s",
+      "imageUrl": "https://picsum.photos/seed/smartwatch-active/800/600",
       "categoryId": 1,
       "stock": 16
     },
@@ -86,7 +86,7 @@
       "name": "Organizador Desk Flow",
       "description": "Organizador para escritorio con compartimentos modulares.",
       "price": 17.75,
-      "imageUrl": "https://dilipa.com.ec/3787-large_default/organizador-line-desk-malla-3-divisiones-498-4.jpg",
+      "imageUrl": "https://picsum.photos/seed/desk-flow/800/600",
       "categoryId": 3,
       "stock": 50
     },
@@ -95,7 +95,7 @@
       "name": "Cargador Turbo 65W",
       "description": "Cargador de alta potencia compatible con multiples dispositivos.",
       "price": 39,
-      "imageUrl": "https://ventiontech.com/cdn/shop/files/1_eae3489e-d995-4ecd-a3f6-a2b97d0927e9.jpg?v=1706595195",
+      "imageUrl": "https://picsum.photos/seed/cargador-turbo/800/600",
       "categoryId": 4,
       "stock": 22
     },
@@ -104,18 +104,9 @@
       "name": "Parlante Studio Mini",
       "description": "Parlante compacto con sonido claro para espacios reducidos.",
       "price": 45.8,
-      "imageUrl": "data:image/jpeg;base64,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",
+      "imageUrl": "https://picsum.photos/seed/parlante-mini/800/600",
       "categoryId": 1,
       "stock": 14
-    },
-    {
-      "id": 11,
-      "name": "iphone 15 pro max",
-      "description": "es un celular de gana alta para un mejor desempeño laboral",
-      "price": 870,
-      "imageUrl": "https://blackphonestorec.com/wp-content/uploads/2025/02/iphone-15-pro-1-copia-scaled-1080x1080.png",
-      "categoryId": 1,
-      "stock": 19
     }
   ]
 }
