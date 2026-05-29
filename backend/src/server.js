@@ -5,8 +5,21 @@ import { initializeDb, readDb, writeDb } from './storage.js';
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
+const allowedOrigins = [process.env.FRONTEND_URL, process.env.NETLIFY_URL].filter(Boolean);
 
-app.use(cors());
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error('Origen no permitido por CORS.'));
+    },
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS']
+  })
+);
 app.use(express.json());
 app.use((_req, res, next) => {
   res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
@@ -87,6 +100,10 @@ function nextId(items) {
 }
 
 app.get('/api/health', (_req, res) => {
+  res.json({ ok: true, message: 'MercApp API funcionando' });
+});
+
+app.get('/health', (_req, res) => {
   res.json({ ok: true, message: 'MercApp API funcionando' });
 });
 

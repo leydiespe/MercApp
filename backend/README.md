@@ -19,6 +19,13 @@ npm start
 - `PORT`: puerto de escucha del backend, opcional en Railway
 - `MONGODB_URI`: cadena `mongodb+srv://...` de Atlas
 - `MONGODB_DB`: nombre de la base de datos, por defecto `mercapp`
+- `FRONTEND_URL`: origen permitido del frontend en producción
+- `NETLIFY_URL`: origen alterno permitido para el despliegue en Netlify
+
+## Salud y CORS
+
+- `GET /health` para verificación rápida de disponibilidad
+- CORS se limita a `FRONTEND_URL` y `NETLIFY_URL` cuando están definidos
 
 ## Endpoints
 
