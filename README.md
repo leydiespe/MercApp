@@ -11,7 +11,7 @@ Aplicación web tipo SPA para catálogo de productos, desarrollada con Vue 3 y u
 ## Funcionalidades implementadas
 
 - API REST con productos y categorías
-- Persistencia en MongoDB y semilla de datos
+- Persistencia en MongoDB
 - Frontend SPA con Vue 3 + Vite
 - Vue Router con rutas principales y dinámica por id
 - Listado con buscador y filtro por categoría
@@ -27,6 +27,7 @@ Aplicación web tipo SPA para catálogo de productos, desarrollada con Vue 3 y u
 
 - backend/ API REST con Express
 - frontend/ SPA con Vue 3
+- docs/ micrositio técnico para GitHub Pages
 
 ## Instalación y uso
 
@@ -35,7 +36,6 @@ Aplicación web tipo SPA para catálogo de productos, desarrollada con Vue 3 y u
 ```bash
 cd backend
 npm install
-npm run seed
 npm start
 ```
 
@@ -54,3 +54,7 @@ npm run dev
 - /product/new crear producto
 - /product/:id/edit editar producto
 - /cart carrito
+
+## Micrositio de entrega
+
+El sitio técnico de la fase 4 vive en `docs/` y se publica con GitHub Pages.

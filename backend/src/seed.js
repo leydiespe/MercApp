@@ -1,5 +1,4 @@
-import { writeDb } from './storage.js';
-import { defaultState } from './seedData.js';
+import { initializeDb } from './storage.js';
 
-await writeDb(defaultState);
-console.log('Seed completado: categorias y productos cargados.');
+await initializeDb();
+console.log('MongoDB inicializada correctamente.');

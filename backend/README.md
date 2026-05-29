@@ -11,7 +11,6 @@ API REST para el catalogo de productos de MercApp.
 
 ```bash
 npm install
-npm run seed
 npm start
 ```
 
