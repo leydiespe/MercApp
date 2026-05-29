@@ -269,10 +269,10 @@ async function startServer() {
       const baseUrl = `http://localhost:${port}`;
       console.log(`Servidor corriendo en ${baseUrl}`);
       console.log(`API REST disponible en ${baseUrl}/api`);
-      console.log(process.env.MONGODB_URI ? 'Persistencia MongoDB conectada correctamente' : 'Persistencia local conectada correctamente');
+      console.log('Persistencia MongoDB conectada correctamente');
     });
   } catch (error) {
-    console.error('No fue posible iniciar la persistencia local');
+    console.error('No fue posible iniciar la persistencia MongoDB');
     console.error(error);
     process.exit(1);
   }

@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue'
-import { apiGet } from '../services/api'
+import { api } from '../services/api'
 
-export function useApi(url) {
+export function useApi(fetcher) {
   const data = ref(null)
   const loading = ref(false)
   const error = ref(null)
@@ -10,12 +10,12 @@ export function useApi(url) {
     loading.value = true
     error.value = null
     try {
-      data.value = await apiGet(url)
+      data.value = await fetcher()
     } catch (err) {
       error.value = err.message
       // Reintento simple (1 vez)
       try {
-        data.value = await apiGet(url)
+        data.value = await fetcher()
         error.value = null
       } catch (retryErr) {
         error.value = retryErr.message
@@ -34,12 +34,12 @@ export function useApi(url) {
 }
 
 export function useProducts() {
-  const productsApi = useApi('/api/products')
-  const categoriesApi = useApi('/api/categories')
+  const productsApi = useApi(() => api.getProducts())
+  const categoriesApi = useApi(() => api.getCategories())
 
   const getProductById = async (id) => {
     try {
-      return await apiGet(`/api/products/${id}`)
+      return await api.getProduct(id)
     } catch (err) {
       console.error('Error fetching product:', err)
       throw err

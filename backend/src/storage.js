@@ -1,33 +1,16 @@
-import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import 'dotenv/config';
 import { MongoClient } from 'mongodb';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const dataDir = path.join(__dirname, '..', 'data');
-const dataFile = path.join(dataDir, 'db.json');
 
 const mongoUri = process.env.MONGODB_URI;
 const mongoDbName = process.env.MONGODB_DB || 'mercapp';
 
 let mongoClientPromise;
 
-async function ensureDataFile() {
-  await mkdir(dataDir, { recursive: true });
-
-  try {
-    await readFile(dataFile, 'utf8');
-  } catch {
-    await writeFile(dataFile, JSON.stringify({ categories: [], products: [] }, null, 2), 'utf8');
-  }
-}
-
-function isMongoEnabled() {
-  return Boolean(mongoUri);
-}
-
 async function getMongoClient() {
+  if (!mongoUri) {
+    throw new Error('MONGODB_URI no esta configurada. Define la conexion de MongoDB Atlas para iniciar la API.');
+  }
+
   if (!mongoClientPromise) {
     const client = new MongoClient(mongoUri);
     mongoClientPromise = client.connect();
@@ -69,38 +52,14 @@ async function writeMongoDb(state) {
   }
 }
 
-async function readFileDb() {
-  await ensureDataFile();
-  const raw = await readFile(dataFile, 'utf8');
-  return JSON.parse(raw);
-}
-
-async function writeFileDb(state) {
-  await ensureDataFile();
-  await writeFile(dataFile, JSON.stringify(state, null, 2), 'utf8');
-}
-
 export async function readDb() {
-  if (isMongoEnabled()) {
-    return readMongoDb();
-  }
-
-  return readFileDb();
+  return readMongoDb();
 }
 
 export async function writeDb(state) {
-  if (isMongoEnabled()) {
-    return writeMongoDb(state);
-  }
-
-  return writeFileDb(state);
+  return writeMongoDb(state);
 }
 
 export async function initializeDb() {
-  if (isMongoEnabled()) {
-    await getMongoDatabase();
-    return;
-  }
-
-  await ensureDataFile();
+  await getMongoDatabase();
 }

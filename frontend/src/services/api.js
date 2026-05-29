@@ -45,3 +45,29 @@ export function apiDelete(endpoint) {
     method: 'DELETE'
   })
 }
+
+export const api = {
+  getCategories() {
+    return apiGet('/api/categories')
+  },
+
+  getProducts() {
+    return apiGet('/api/products')
+  },
+
+  getProduct(id) {
+    return apiGet(`/api/products/${id}`)
+  },
+
+  createProduct(data) {
+    return apiPost('/api/products', data)
+  },
+
+  updateProduct(id, data) {
+    return apiPut(`/api/products/${id}`, data)
+  },
+
+  deleteProduct(id) {
+    return apiDelete(`/api/products/${id}`)
+  }
+}

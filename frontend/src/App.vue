@@ -10,7 +10,6 @@
             <span class="badge">{{ totalItems }}</span>
           </router-link>
           <router-link to="/product/new" class="nav-link">Nuevo</router-link>
-          <router-link to="/about" class="nav-link">Acerca de</router-link>
         </nav>
       </div>
     </header>

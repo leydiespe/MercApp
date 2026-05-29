@@ -11,22 +11,22 @@ Aplicación web tipo SPA para catálogo de productos, desarrollada con Vue 3 y u
 ## Funcionalidades implementadas
 
 - API REST con productos y categorías
-- Persistencia en JSON y semilla de datos
+- Persistencia en MongoDB y semilla de datos
 - Frontend SPA con Vue 3 + Vite
 - Vue Router con rutas principales y dinámica por id
 - Listado con buscador y filtro por categoría
 - Vista de detalle de producto
-- Componente reutilizable `ProductCard`
-- Composables para consumo del API
-- Carrito simple en memoria con persistencia en `localStorage`
+- Componente reutilizable ProductCard
+- Capa de API centralizada para el frontend
+- Carrito simple en memoria con persistencia en localStorage
 - Formulario de creación, edición y eliminación de productos
-- Lazy loading de vistas y fallback con `Suspense`
+- Lazy loading de vistas y fallback con Suspense
 - Manejo de estados de carga y error
 
 ## Estructura
 
-- `backend/` API REST con Express
-- `frontend/` SPA con Vue 3
+- backend/ API REST con Express
+- frontend/ SPA con Vue 3
 
 ## Instalación y uso
 
@@ -49,9 +49,8 @@ npm run dev
 
 ## Rutas principales
 
-- `/` catálogo
-- `/product/:id` detalle
-- `/product/new` crear producto
-- `/product/:id/edit` editar producto
-- `/cart` carrito
-- `/about` información del proyecto
+- / catálogo
+- /product/:id detalle
+- /product/new crear producto
+- /product/:id/edit editar producto
+- /cart carrito

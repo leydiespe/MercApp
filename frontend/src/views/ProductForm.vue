@@ -67,7 +67,7 @@
 <script setup>
 import { computed, onMounted, reactive, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { apiDelete, apiPost, apiPut } from '../services/api'
+import { api } from '../services/api'
 import { useProducts } from '../composables/useProducts'
 
 const route = useRoute()
@@ -147,10 +147,10 @@ async function handleSubmit() {
   try {
     const payload = mapToPayload()
     if (isEditMode.value) {
-      await apiPut(`/api/products/${productId.value}`, payload)
+      await api.updateProduct(productId.value, payload)
       await router.push(`/product/${productId.value}`)
     } else {
-      const created = await apiPost('/api/products', payload)
+      const created = await api.createProduct(payload)
       await router.push(`/product/${created.id}`)
     }
   } catch (error) {
@@ -168,7 +168,7 @@ async function handleDelete() {
 
   saving.value = true
   try {
-    await apiDelete(`/api/products/${productId.value}`)
+    await api.deleteProduct(productId.value)
     await router.push('/')
   } catch (error) {
     errors.value = [error.message]
