@@ -6,15 +6,7 @@ export const categories = [
 ];
 
 export const products = [
-  {
-    id: 1,
-    name: 'Laptop Nova 14',
-    description: 'Portatil ligera con pantalla Full HD y SSD rapido.',
-    price: 799.99,
-    imageUrl: 'https://picsum.photos/seed/laptop-nova/800/600',
-    categoryId: 1,
-    stock: 12
-  },
+ 
   {
     id: 2,
     name: 'Audifonos Pulse',
